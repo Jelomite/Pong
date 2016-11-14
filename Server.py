@@ -1,8 +1,8 @@
-import socket, thread, datetime
+import socket, thread
 
 
-def server(port=4050, a_meme=0):
-    cat = a_meme
+def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. because thread needs it
+    a_meme += 1  # just to get rid of the error with the conventions
     try:
         host = (
             [l for l in
@@ -22,7 +22,6 @@ def server(port=4050, a_meme=0):
 
     sock.listen(10)
     sock_list = []
-    message = 'place holder'
 
     def broadcast(sock, message, addr, flags):
         for socket in sock_list:
@@ -57,4 +56,3 @@ def server(port=4050, a_meme=0):
         thread.start_new_thread(new_socket, (nsock, addr))
 
     sock.close()
-
