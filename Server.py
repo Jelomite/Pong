@@ -2,7 +2,7 @@ import socket, thread
 
 
 def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. because thread needs it
-    a_meme += 1  # just to get rid of the error with the conventions
+    cat = a_meme # just to get rid of the error with the conventions
     try:
         host = (
             [l for l in

@@ -21,6 +21,7 @@ screen = pygame.display.set_mode(size)
 menu = True
 
 pygame.display.set_caption("Pong")
+all_data = ''
 
 
 def print_text(color, x, y, message):
@@ -171,6 +172,7 @@ while True:
 
         carry = True
         bug_iteration = 0
+        s.settimeout(0.1)
 
         while carry:
             for event in pygame.event.get():
@@ -184,17 +186,22 @@ while True:
             if keys[pygame.K_UP] and 0 < player_right.rect.y:
                 player_right.move_up(speed)
 
+            exit_mode = True
             try:
                 all_data = connection(
                     str(player_right.rect.y) + ':' + str(ball.rect.x) + ':' + str(ball.rect.y) + ':' + str(score))
                 temp = int(all_data.split(':', 3)[3])
+                exit_mode = False
             except:
                 all_data = "0:0:0:0"
                 s.close()
 
-                print "unable to retrieve data from server"
+                print "unable to retrieve data from server 1"
                 break
-
+            if exit_mode:
+                carry = False
+                break
+            print exit_mode
             if distance((ball.rect.x, ball.rect.y),
                         (screen_width - int(all_data.split(':', 3)[1]),
                          int(all_data.split(':', 3)[2]))) > 10 and inverted == 1:
