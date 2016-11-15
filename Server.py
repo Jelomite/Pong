@@ -20,7 +20,7 @@ def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. be
     except:
         print 'port is already in use'
 
-    sock.listen(10)
+    sock.listen(2)
     sock_list = []
 
     def broadcast(sock, message, addr, flags):
