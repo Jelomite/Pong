@@ -196,8 +196,6 @@ while True:
                 exit_mode = False
             except:
                 all_data = "0:0:0:0"
-                s\
-                    .close()
 
                 print "unable to retrieve data from server 1"
                 break
