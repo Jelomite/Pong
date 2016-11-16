@@ -33,17 +33,22 @@ def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. be
                     pass
 
     def new_socket(clientsock, addr):
-        while True:
-            data = clientsock.recv(1024)
-            if not data or data == "!quit":
-                break
-            else:
-                broadcast(clientsock, data, addr, ['chat'])
+        try:
+            while True:
+                data = clientsock.recv(1024)
+                if not data or data == "!quit":
+                    break
+                else:
+                    broadcast(clientsock, data, addr, ['chat'])
+        except Exception:
+            print Exception
 
         clientsock.close()
         sock_list.remove(clientsock)
+
         try:
             print 'disconnected from ', addr
+            print sock_list
 
         except:
             pass

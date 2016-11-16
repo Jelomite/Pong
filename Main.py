@@ -110,6 +110,7 @@ while True:
     if choose == 0:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(5)
+        print 'timeout is now 5 seconds'
 
         try:
             s.connect((host, port))
@@ -118,6 +119,7 @@ while True:
 
         except:
             print "unable to connect %s:%s" % (host, port)
+
             continue
 
         sys.stdout.flush()
@@ -194,14 +196,14 @@ while True:
                 exit_mode = False
             except:
                 all_data = "0:0:0:0"
-                s.close()
+                s\
+                    .close()
 
                 print "unable to retrieve data from server 1"
                 break
             if exit_mode:
                 carry = False
                 break
-            print exit_mode
             if distance((ball.rect.x, ball.rect.y),
                         (screen_width - int(all_data.split(':', 3)[1]),
                          int(all_data.split(':', 3)[2]))) > 10 and inverted == 1:
@@ -289,5 +291,6 @@ while True:
                     port = 4050
     elif choose == 3:
         break
+    s.close()
 pygame.quit()
 exit()
