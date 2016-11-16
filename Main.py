@@ -220,7 +220,7 @@ while True:
             if not 0 < ball.rect.x < screen_width:
                 if ball.rect.x <= 0:
                     score += 1
-                ball.set_position(screen_width / 2, screen_height / 2)
+                ball.set_position(screen_width / 2, 30)
 
             collision_list = pygame.sprite.spritecollide(ball, players, False)
 
