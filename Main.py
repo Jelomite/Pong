@@ -12,6 +12,7 @@ from pygame.locals import *
 
 # default ip and port
 port = 4050
+bug_iteration = 0
 
 # static variables
 pygame.init()
@@ -78,15 +79,9 @@ def text(message):
 
 # data transfer manager
 def connection(message):
-    socket_list = [sys.stdin, s]
-    ready_to_read = socket_list
-
-    for sock in ready_to_read:
-        if sock == s:
-            data = sock.recv(4096)
-            return data
-        else:
-            s.send(message)
+    s.send(message)
+    date = s.recv(1024)
+    return date
 
 
 # returns distance between two cords
@@ -149,7 +144,6 @@ while True:
         elif first == 1:
             pass
         print_text(Colors.pomegranate, width / 3, 50, 'Searching for Players...')
-
         player_right = Object.Racket(Colors.pure_white, screen_width * 0.9 - 5, screen_height / 2, (10, 50))
         player_left = Object.Racket(Colors.pure_white, screen_width * 0.1 + 5, screen_height / 2, (10, 50))
         ball = Object.Racket(Colors.pure_white, screen_width / 2, screen_height / 2, (10, 10))
@@ -173,7 +167,6 @@ while True:
                 break
 
         carry = True
-        bug_iteration = 0
         s.settimeout(0.1)
 
         while carry:
