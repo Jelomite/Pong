@@ -99,7 +99,7 @@ while True:
         'Play',
         'Host',
         'Options',
-        'Quit Game'], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white)
+        'Quit Game'], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white, exit_allowed=False)
 
     # game itself is initialized and runs here.
     if choose == 0:
@@ -223,6 +223,7 @@ while True:
 
             bug_iteration += 1
 
+
             # print bug_iteration, ball.rect.x, ball.rect.y
             try:
                 their_score = all_data.split(':', 3)[3]
@@ -248,7 +249,7 @@ while True:
                 'Start Server',
                 'Change Port',
                 'Back'
-            ], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white)
+            ], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white, exit_allowed=False)
 
             if server_choose == 0:
                 thread.start_new_thread(Server.server, (4050, ''))
@@ -269,7 +270,7 @@ while True:
             choose = Menu.menu(screen, 'Options', [
                 'Back',
                 'IP',
-                'Port'], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white)
+                'Port'], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white, exit_allowed=False)
             if choose == 0:
                 menu = False
             elif choose == 1:
