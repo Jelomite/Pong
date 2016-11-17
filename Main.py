@@ -223,7 +223,6 @@ while True:
 
             bug_iteration += 1
 
-
             # print bug_iteration, ball.rect.x, ball.rect.y
             try:
                 their_score = all_data.split(':', 3)[3]
