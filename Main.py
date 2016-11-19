@@ -52,7 +52,7 @@ host1 = host
 
 # gui text method, gets message as a prompt, and returns the value that is written in it.
 def text(message):
-    txtbx = GUIText.Input(maxlength=16, color=Colors.pure_white, prompt=message)
+    txtbx = GUIText.Input(maxlength=100, color=Colors.pure_white, prompt=message)
     # create the pygame clock
     clock = pygame.time.Clock()
     # main loop!
