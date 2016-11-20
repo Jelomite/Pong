@@ -1,8 +1,9 @@
 import socket, thread
 
 
+status = 'offline'
 def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. because thread needs it
-    cat = a_meme # just to get rid of the error with the conventions
+    cat = a_meme  # just to get rid of the error with the conventions
     try:
         host = (
             [l for l in
@@ -17,8 +18,11 @@ def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. be
     try:
         sock.bind((host, port))
         print "starting server on %s:%s" % (host, port)
+        status = 'online'
     except:
         print 'port is already in use'
+        if status is not 'online':
+            status = 'offline'
 
     sock.listen(2)
     sock_list = []
@@ -48,7 +52,6 @@ def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. be
 
         try:
             print 'disconnected from ', addr
-            print sock_list
 
         except:
             pass
