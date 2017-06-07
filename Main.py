@@ -251,7 +251,7 @@ while True:
             ], width / 3, height / 3, None, 50, 1.4, Colors.pure_white, Colors.pure_white, exit_allowed=False)
 
             if server_choose == 0:
-                thread.start_new_thread(Server.server, (4050, ''))
+                thread.start_new_thread(Server.server, (4050,))
             elif server_choose == 1:
                 port = text('Port: ')
                 if not port:
@@ -282,6 +282,9 @@ while True:
                     port = 4050
     elif choose == 3:
         break
-    s.close()
+    try:
+        s.close()
+    except:
+        pass
 pygame.quit()
 exit()

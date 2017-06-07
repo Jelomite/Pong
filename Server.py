@@ -1,9 +1,10 @@
 import socket, thread
 
-
 status = 'offline'
-def server(port=4050, a_meme=0):  # a_meme is just a placeholder for nothing. because thread needs it
-    cat = a_meme  # just to get rid of the error with the conventions
+
+
+def server(port=4050):
+
     try:
         host = (
             [l for l in
