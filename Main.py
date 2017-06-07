@@ -23,7 +23,7 @@ menu = True
 
 pygame.display.set_caption("Pong")
 all_data = ''
-
+no_data = 0
 
 def print_text(color, x, y, message):
     screen.blit(my_font.render(message, 1, color),
@@ -189,9 +189,10 @@ while True:
                 exit_mode = False
             except socket.timeout:
                 all_data = "0:0:0:0"
-
-                print "unable to retrieve data from server 1"
-                exit_mode = False
+                no_data += 1
+                print "unable to retrieve data from server, trying to compensate"
+                if no_data < 20:
+                    exit_mode = False
             if exit_mode:
                 carry = False
                 break
