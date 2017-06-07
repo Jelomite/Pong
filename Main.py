@@ -138,7 +138,7 @@ while True:
         socket_list = [sys.stdin, s]
 
         ready_to_read = socket_list
-        first = int(str(s.recv(4096)).split(':', 3)[0])
+        first = int(str(s.recv(4096)).split(':')[0])
         if first == -1:
             inverted = first
         elif first == 1:
@@ -185,23 +185,23 @@ while True:
             try:
                 all_data = connection(
                     str(player_right.rect.y) + ':' + str(ball.rect.x) + ':' + str(ball.rect.y) + ':' + str(score))
-                temp = int(all_data.split(':', 3)[3])
+                temp = int(all_data.split(':')[3])
                 exit_mode = False
-            except:
+            except socket.timeout:
                 all_data = "0:0:0:0"
 
                 print "unable to retrieve data from server 1"
-                break
+                exit_mode = False
             if exit_mode:
                 carry = False
                 break
             if distance((ball.rect.x, ball.rect.y),
-                        (screen_width - int(all_data.split(':', 3)[1]),
-                         int(all_data.split(':', 3)[2]))) > 10 and inverted == 1:
-                ball.set_position(screen_width - int(all_data.split(':', 3)[1]), int(all_data.split(':', 3)[2]))
+                        (screen_width - int(all_data.split(':')[1]),
+                         int(all_data.split(':')[2]))) > 10 and inverted == 1:
+                ball.set_position(screen_width - int(all_data.split(':')[1]), int(all_data.split(':')[2]))
 
-            player_left.rect.y = int(all_data.split(':', 3)[0])
-            ball_pos = (screen_width - int(all_data.split(':', 3)[1]), int(all_data.split(':', 3)[2]))
+            player_left.rect.y = int(all_data.split(':')[0])
+            ball_pos = (screen_width - int(all_data.split(':')[1]), int(all_data.split(':')[2]))
             ball.move_angle(speed, movement, inverted)
             # if distance((ball.rect.x, ball.rect.y), ball_pos) > 180 and inverted:
             #   ball.set_position(ball_pos[0], ball_pos[1])
@@ -225,7 +225,7 @@ while True:
 
             # print bug_iteration, ball.rect.x, ball.rect.y
             try:
-                their_score = all_data.split(':', 3)[3]
+                their_score = all_data.split(':')[3]
             except IndexError:
                 their_score = '0'
 
